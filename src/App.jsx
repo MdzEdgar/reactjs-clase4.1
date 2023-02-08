@@ -8,6 +8,17 @@ function App() {
 
   const URL_BASE = "https://movies-crud-2.academlo.tech/"
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const data = {
+      name: e.target.name.value,
+      genre: e.target.genre.value,
+      duration: e.target.duration.value,
+      release_date: e.target.release.value
+    }
+    console.log(data)
+  }
+
   useEffect(() => {
     axios.get(`${URL_BASE}movies/`)
     .then((res) => setMovies(res.data))
@@ -17,6 +28,26 @@ function App() {
   return (
     <div className="App">
       <h1>Movies App</h1>
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name:<span>*</span></label>
+          <input id='name' type="text" />
+        </div>
+        <div>
+          <label>Genre:<span>*</span></label>
+          <input id="genre" type="text" />
+        </div>
+        <div>
+          <label>Duration (min):<span>*</span></label>
+          <input id='duration' type="number" />
+        </div>
+        <div>
+          <label>Release date:<span>*</span></label>
+          <input id='release' type="date" />
+        </div>
+        <button>Create</button>
+      </form>
 
       <section>
         {
