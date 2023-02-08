@@ -16,7 +16,13 @@ function App() {
       duration: e.target.duration.value,
       release_date: e.target.release.value
     }
-    console.log(data)
+    createMovie(data)
+  }
+
+  const createMovie = (data) => {
+    axios.post(`${URL_BASE}movies/`, data)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err))
   }
 
   useEffect(() => {
