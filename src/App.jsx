@@ -32,6 +32,12 @@ function App() {
     .catch((err) => console.log(err))
   }
 
+  const deleteMovie = (id) => {
+    axios.delete(`${URL_BASE}movies/${id}/`)
+    .then((res) => getAllMovies(res.data))
+    .catch((err) => console.log(err))
+  }
+
   useEffect(() => {
     getAllMovies()
   }, [])
@@ -62,7 +68,7 @@ function App() {
 
       <section>
         {
-        movies.map(movie => <MovieCard key={movie.id} movie={movie} />)
+        movies.map(movie => <MovieCard key={movie.id} deleteMovie={deleteMovie} movie={movie} />)
         }
       </section>
     </div>

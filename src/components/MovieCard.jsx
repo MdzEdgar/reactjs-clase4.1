@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MovieCard = ({movie}) => {
+const MovieCard = ({movie, deleteMovie}) => {
   return (
     <article>
       <h3>{movie.name}</h3>
@@ -9,6 +9,7 @@ const MovieCard = ({movie}) => {
         <li><span>Duration: </span>{movie.duration} minutes</li>
         <li><span>Release date: </span>{movie.release_date}</li>
       </ul>
+      <button onClick={() => deleteMovie(movie.id)} ><i className='bx bx-trash'></i></button>
     </article>
   )
 }
