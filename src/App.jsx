@@ -17,6 +17,7 @@ function App() {
       release_date: e.target.release.value
     }
     createMovie(data)
+    e.target.reset()
   }
 
   const createMovie = (data) => {
@@ -61,7 +62,7 @@ function App() {
 
       <section>
         {
-        movies.map((movie) => <MovieCard key={movie.key} movie={movie} />)
+        movies.map(movie => <MovieCard key={movie.id} movie={movie} />)
         }
       </section>
     </div>
