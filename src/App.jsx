@@ -21,14 +21,18 @@ function App() {
 
   const createMovie = (data) => {
     axios.post(`${URL_BASE}movies/`, data)
-    .then((res) => console.log(res.data))
+    .then((res) => getAllMovies())
+    .catch((err) => console.log(err))
+  }
+
+  const getAllMovies = () => {
+    axios.get(`${URL_BASE}movies/`)
+    .then((res) => setMovies(res.data))
     .catch((err) => console.log(err))
   }
 
   useEffect(() => {
-    axios.get(`${URL_BASE}movies/`)
-    .then((res) => setMovies(res.data))
-    .catch((err) => console.log(err))
+    getAllMovies()
   }, [])
 
   return (
