@@ -1,10 +1,13 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import MovieCard from './components/MovieCard'
 
 function App() {
   const [movies, setMovies] = useState([])
+  const [movieUpdate, setMovieUpdate] = useState()
+
+  const form = useRef()
 
   const URL_BASE = "https://movies-crud-2.academlo.tech/"
 
@@ -38,6 +41,14 @@ function App() {
     .catch((err) => console.log(err))
   }
 
+  const editForm = (data) => {
+    console.log(data)
+    form.current.name.value = data.name
+    form.current.genre.value = data.genre
+    form.current.duration.value = data.duration
+    form.current.release.value = data.release_date
+  }
+
   useEffect(() => {
     getAllMovies()
   }, [])
@@ -46,7 +57,7 @@ function App() {
     <div className="App">
       <h1>Movies App</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form  ref={form} onSubmit={handleSubmit}>
         <div>
           <label>Name:<span>*</span></label>
           <input id='name' type="text" />
@@ -63,12 +74,12 @@ function App() {
           <label>Release date:<span>*</span></label>
           <input id='release' type="date" />
         </div>
-        <button>Create</button>
+        <button>{movieUpdate ? 'update' : 'create'}</button>
       </form>
 
       <section>
         {
-        movies.map(movie => <MovieCard key={movie.id} deleteMovie={deleteMovie} movie={movie} />)
+        movies.map(movie => <MovieCard key={movie.id} deleteMovie={deleteMovie} movie={movie} setMovieUpdate={setMovieUpdate} editForm={editForm} />)
         }
       </section>
     </div>
