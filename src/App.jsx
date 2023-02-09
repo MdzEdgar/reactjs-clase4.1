@@ -34,7 +34,7 @@ function App() {
 
   const deleteMovie = (id) => {
     axios.delete(`${URL_BASE}movies/${id}/`)
-    .then((res) => getAllMovies(res.data))
+    .then(() => getAllMovies())
     .catch((err) => console.log(err))
   }
 
