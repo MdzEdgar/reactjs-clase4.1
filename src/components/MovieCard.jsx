@@ -2,6 +2,7 @@ import React from 'react'
 
 const MovieCard = ({movie, deleteMovie, setMovieUpdate, editForm}) => {
 
+  //Función que se ejecuta al dar click en edit y a su vez ejecuta el setMovieUpdate (que cambia el valor del estado movieUpdate) y la función editForm
   const handleClickEdit = () => {
     setMovieUpdate(movie)
     editForm(movie)
