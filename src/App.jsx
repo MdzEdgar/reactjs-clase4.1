@@ -22,7 +22,7 @@ function App() {
 
   const createMovie = (data) => {
     axios.post(`${URL_BASE}movies/`, data)
-    .then((res) => getAllMovies())
+    .then(() => getAllMovies())
     .catch((err) => console.log(err))
   }
 
